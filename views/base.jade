@@ -1,0 +1,19 @@
+include header
+nav.row
+    ul.nav.nav-pills
+        li(role="presentation") 
+            a(href="/") Brand
+        li(role="presentation") 
+            a(href="/explore/") 发现
+        li(role="presentation") 
+            a(href="/square/") 广场
+        //li role="presentation" class="dropdown user-action" --
+            a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"{{user.username}}
+            span.caret
+        ul.dropdown-menu(role="menu")
+        li.user-action(role="presentation") 
+            a(href="/accounts/login/") 登陆
+        li.user-action(role="presentation")
+            a(href="/accounts/register/") 注册
+
+include footer
