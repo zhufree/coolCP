@@ -1,0 +1,11 @@
+extends ../base.jade
+
+block content
+  .cp-dlg-cover
+  form.cp-dlg-box(action=".", method="post")
+    h3.cp-dlg-title Login
+    input.cp-dlg-input(type="text", placeholder="userid/username/email")
+    label.cp-dlg-label Password
+    input.cp-dlg-input(type="password")
+    button.cp-dlg-sure-btn Sure
+    button.cp-dlg-cancel-btn Cancel

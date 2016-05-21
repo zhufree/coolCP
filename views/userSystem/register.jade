@@ -1,0 +1,15 @@
+extends ../base.jade
+
+block link
+  link(rel='stylesheet',href='/stylesheets/user-system.min.css')
+    
+block content
+  .cp-dlg-cover
+  form.cp-dlg-box(action=".", method="post")
+    h3.cp-dlg-title Register
+    label.cp-dlg-label Email
+    input.cp-dlg-input(type="text", placeholder="username@example.com")
+    label.cp-dlg-label Password
+    input.cp-dlg-input(type="password")
+    button.cp-dlg-sure-btn Sure
+    button.cp-dlg-cancel-btn Cancel
