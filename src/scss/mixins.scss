@@ -1,7 +1,27 @@
 //nav
-@mixin setNav($height, $color){
+@mixin setNav($height, $color, $side-padding, $tab-width, $tab-hover-color, $font-size, $font-color){
     height: $height;
     background-color: $color;
+    padding: 0 $side-padding;
+    > ul {
+      // need to set float left or right
+      display: block;
+      overflow: hidden;
+      > li {
+        float: left;
+        font-size: $font-size;
+        width: $tab-width;
+        text-align: center;
+        &:hover {
+          background-color: $tab-hover-color;
+        }
+      }
+      > li > a {
+        display: block;
+        line-height: $height;
+        color: $font-color;
+      }
+    }
 }
 
 //yuan xing tou xiang

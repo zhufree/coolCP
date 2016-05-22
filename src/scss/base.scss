@@ -4,52 +4,15 @@
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  min-height: 800px;
 }
 
-nav#cp-nav{
-  background-color: $main-blue !important;/*nav的背景色,a背景是透明的*/
-  padding: 10px 10px;
-  margin: 0 !important;
-  width: 100%;
-  // position: fixed;
-  z-index: 1;
-  // top: 0;
+nav.cp-nav{
+  @include setNav(60px, $light-blue, 40px, 100px, $main-blue, 20px, $main-text-color);
 }
 
-nav .dropdown-menu{/*整个下拉列表*/
-  background-color: #00B7FF !important;
-  /* 一样的背景色但没有padding*/
-  min-width: auto;
+ul.cp-tabs{
+  float: left;
 }
-
-nav .dropdown-menu>li{
-  padding: 0;
-  margin: 10px 0;
-}
-
-nav a{
-  text-decoration: none;
-  color: $main-text-color;
-  border-radius: 10px;
-}
-
-nav a:hover{
-  background-color: $dark-blue !important;
-}
-
-nav .open{
-  background-color: $dark-blue !important;
-}
-
-.container-fluid{
-  margin-top:40px;
-}
-
-.container-fluid>*{
-  margin-top:40px;
-}
-
-.user-action{
-  float: right !important;
+ul.cp-user {
+  float: right;
 }

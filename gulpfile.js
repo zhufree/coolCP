@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   gulpUtil = require('gulp-util'),
   del = require('del'),
   jade = require('gulp-jade'),
+  connect = require('gulp-connect'),
   express = require('gulp-express');
 
 gulp.task('styles', function(){
@@ -18,6 +19,7 @@ gulp.task('styles', function(){
     .pipe(rename({suffix: '.min'}))
     .pipe(cleancss())
     .pipe(gulp.dest('public/stylesheets'));
+  express.notify();
 });
 
 gulp.task('scripts', function () {
@@ -27,25 +29,21 @@ gulp.task('scripts', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify().on('error', gulpUtil.log))
     .pipe(gulp.dest('public/javascripts'));
+  express.notify();
 });
 
 gulp.task('clean', function(cb) {
   del(['dist/css', 'dist/js'], cb);
 });
 
-// gulp.task('connect', function () {
-//   connect.server({
-//     root: './',
-//     livereload: true
-//   });
-// });
-
 gulp.task('server', ['styles', 'scripts'], function() {
   express.run(['./bin/www']);
 
-  gulp.watch('src/scss/**/*.scss', ['styles', express.notify]);
-  gulp.watch('src/js/**/*.js', ['scripts', express.notify]);
+  gulp.watch('src/scss/**/*.scss', ['styles']);
+  gulp.watch('src/js/**/*.js', ['scripts']);
   gulp.watch('views/**/*.jade', express.notify);
+  gulp.watch('public/**/*.css', express.notify);
+  gulp.watch('public/**/*.js', express.notify);
   gulp.watch(['app.js', 'routes/**/*.js'], express.run);
 });
 
