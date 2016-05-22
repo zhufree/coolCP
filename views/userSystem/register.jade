@@ -4,12 +4,11 @@ block link
   link(rel='stylesheet',href='/stylesheets/user-system.min.css')
     
 block content
-  .cp-dlg-cover
+  //- .cp-dlg-cover
   form.cp-dlg-box(action=".", method="post")
     h3.cp-dlg-title Register
     label.cp-dlg-label Email
-    input.cp-dlg-input(type="text", placeholder="username@example.com")
+    input.cp-dlg-input(type="text", placeholder="username@example.com", name="email")
     label.cp-dlg-label Password
-    input.cp-dlg-input(type="password")
-    button.cp-dlg-sure-btn Sure
-    button.cp-dlg-cancel-btn Cancel
+    input.cp-dlg-input(type="password", placeholder="password", name="password")
+    button.cp-dlg-sure-btn(type="submit") Sure

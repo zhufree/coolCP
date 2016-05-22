@@ -1,8 +1,14 @@
 var express = require('express');
-var models = require('../models/mongodb');
-
 var router = express.Router();
-var User = models.User;
+
+var models = require('../models/userModel');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/coolcp', function(error) {
+  if (error) {
+    console.log(error);
+  }
+});
+var User = models.UserModel;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -16,11 +22,19 @@ router.get('/login', function(req, res, next) {
 });
 router.post('/login', function(req, res, next) {
   //get data from req
-
-  //check username and password
-
-  //login user or return error
-  res.send('login send');
+  User.findOne({'accountInfo.email': req.body.email}, function(err, user) {
+    if (err) {
+      res.send('no such user');
+    } else if (!user) {
+      res.send('no such user!');
+    } else {
+      if (req.body.password == user.accountInfo.password) {
+        res.send('login!');
+      } else {
+        res.send('wrong password');
+      }
+    }
+  });
 });
 
 router.get('/logout', function(req, res, next) {
@@ -33,11 +47,15 @@ router.get('/register', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
   //get data in req
-
-  //handle data
-
+  var newUser = new User({
+    accountInfo: {
+      email: req.body.email,
+      password: req.body.password
+    }
+  });
+  newUser.save();
   //redirect to index page
-  res.send('register send');
-})
+  res.redirect('/');
+});
 
 module.exports = router;

@@ -1,15 +1,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var UserSchema = Schema({
-    username : String,
-    nickname : String,
-    password : String,
+  accountInfo: {
+    uid: String,
+    nickname: String,
+    email: String,
+    password: String,
     register_date : {
-        type: Date,
-        default: Date.now
-    },
+      type: Date,
+      default: Date.now
+    }
+  },
+  personInfo: {
+    bornDate: String,
+    age: Number,
+    sexual: String
+  }
 });
 //将Schema发布为Model
-exports.UserModel = mongodb.mongoose.model("User", UserSchema);
+exports.UserModel = mongoose.model("User", UserSchema);
 // var UserDAO = function(){};
 // module.exports = new UserDAO();

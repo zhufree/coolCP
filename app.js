@@ -17,11 +17,11 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(require('connect-livereload')());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('free_coolcp'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('connect-livereload')());
 
 app.use('/', routes);
 app.use('/accounts', users);

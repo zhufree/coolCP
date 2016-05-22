@@ -14,31 +14,25 @@
 }
 
 .cp-dlg-box {
-    position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    // width: 30%;
-    // min-width: 400px;
-    // min-height: 300px;
+  width: 40%;
+  margin: 40px auto;
     background-color: $light-blue;
-    box-shadow: 0 0 1px 1px #555;
-    padding: 40px;
+    box-shadow: 0 0 1px 1px $main-blue;
+    padding: 10px 40px 30px;
+    overflow: hidden;
     > .cp-dlg-title {
         margin: 10px 0;
+        text-align: center;
     }
     > .cp-dlg-input {
         width: 100%;
         height: 40px;
         padding: 5px;
-        border: none;
+        margin-top: 20px;
         font-size: 18px;
+        border: $light-blue 1px solid;
         &:focus {
-            box-shadow: 0 0 1px 1px #D7B98E;
+            box-shadow: 0 0 1px 1px $main-blue;
         }
     }
     > .cp-dlg-msg-content {
