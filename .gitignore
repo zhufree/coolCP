@@ -34,3 +34,6 @@ node_modules
 
 # css and js packages
 bower_components/
+
+#imgs
+public/images/

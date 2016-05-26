@@ -40,7 +40,7 @@ gulp.task('server', ['styles', 'scripts'], function() {
   express.run(['./bin/www']);
 
   gulp.watch('src/scss/**/*.scss', ['styles']);
-  gulp.watch('src/js/**/*.js', ['scripts']);
+  gulp.watch('src/javascript/**/*.js', ['scripts']);
   gulp.watch('views/**/*.jade', express.notify);
   gulp.watch('public/**/*.css', express.notify);
   gulp.watch('public/**/*.js', express.notify);

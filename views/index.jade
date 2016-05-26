@@ -1,3 +1,18 @@
 extends ./base.jade
-
+block link
+  link(rel='stylesheet', href='/stylesheets/index.min.css')
+  
 block content
+  .cp-carousel
+    .slide-carousel.slide-horizontal
+      .cp-carousel-box
+        img.cp-carousel-img.active#img-1(src='images/xlk.jpg')
+        img.cp-carousel-img.next#img-2(src='images/gjmxcxd.jpg')
+        img.cp-carousel-img.prev#img-3(src='images/huhuo.jpg')
+      .cp-carousel-dots
+        a.cp-carousel-dot(href='#img-1') 
+        a.cp-carousel-dot(href='#img-2') 
+        a.cp-carousel-dot(href='#img-3') 
+
+block javascript
+  script(data-main="javascripts/index.min.js",src="http://cdn.bootcss.com/require.js/2.2.0/require.min.js")

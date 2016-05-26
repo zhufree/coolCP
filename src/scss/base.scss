@@ -8,6 +8,11 @@ body {
 
 nav.cp-nav{
   @include setNav(60px, $light-blue, 40px, 100px, $main-blue, 20px, $main-text-color);
+  > ul > li:hover {
+    & > a {
+      color: #fff;
+    }
+  }
 }
 
 ul.cp-tabs{
