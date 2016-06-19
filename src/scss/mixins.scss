@@ -1,5 +1,5 @@
 //nav
-@mixin setNav($height, $color, $side-padding, $tab-width, $tab-hover-color, $font-size, $font-color){
+@mixin setNav($height, $color, $side-padding, $tab-padding, $tab-hover-color, $font-size, $font-color){
     height: $height;
     background-color: $color;
     padding: 0 $side-padding;
@@ -10,7 +10,7 @@
       > li {
         float: left;
         font-size: $font-size;
-        width: $tab-width;
+        padding: 0 $tab-padding;
         text-align: center;
         &:hover {
           background-color: $tab-hover-color;

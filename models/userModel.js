@@ -18,6 +18,6 @@ var UserSchema = Schema({
   }
 });
 //将Schema发布为Model
-exports.UserModel = mongoose.model("User", UserSchema);
+ module.exports = mongoose.model("User", UserSchema);
 // var UserDAO = function(){};
 // module.exports = new UserDAO();

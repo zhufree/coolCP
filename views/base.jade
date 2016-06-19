@@ -9,10 +9,19 @@ body
       li(role="presentation") 
         a(href="/square/") 广场
     ul.cp-user(role="menu")
-      li.user-action(role="presentation") 
-        a(href="/accounts/login/") 登陆
-      li.user-action(role="presentation")
-        a(href="/accounts/register/") 注册
+      if user
+        li.user-action(role="presentation") 
+          if user.accountInfo.nickname
+            a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.nickname}
+          else
+            a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.email}
+        li.user-action(role="presentation")
+          a(href="/accounts/logout/") 退出
+      else
+        li.user-action(role="presentation") 
+          a(href="/accounts/login/") 登陆
+        li.user-action(role="presentation")
+          a(href="/accounts/register/") 注册
   block content
 
 include footer
