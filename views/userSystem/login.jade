@@ -4,8 +4,10 @@ block link
   link(rel='stylesheet',href='/stylesheets/user-system.min.css')
   
 block content
-  form.cp-dlg-box(action=".", method="post")
-    h3.cp-dlg-title Login
-    input.cp-dlg-input(type="text", placeholder="userid/email", name="email")
-    input.cp-dlg-input(type="password", placeholder="password", name="password")
-    button.cp-dlg-sure-btn Sure
+  form.col-md-offset-4.col-md-4.cp-form-box(action=".", method="post")
+    //- h3.cp-form-title 登录
+    input.cp-form-input(type="text", placeholder="用户名or邮箱地址", name="email")
+    input.cp-form-input(type="password", placeholder="密****码", name="password")
+    button.cp-form-login-btn 登录
+    button.cp-form-register-btn 
+      a(href="/accounts/register/")没有账号？立即注册~

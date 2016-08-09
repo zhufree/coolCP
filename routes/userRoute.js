@@ -43,6 +43,7 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
+  req.session.user = null;
   res.send('logout');
 });
 
@@ -56,37 +57,43 @@ router.post('/register', function(req, res, next) {
   var newUser = new User({
     accountInfo: {
       email: req.body.email,
-      password: req.body.password
+      password1: req.body.password1,
+      password2: req.body.password2
     }
   });
-  query.exec(function(err, siteInfo) {
-    //如果没有全局信息，实例化新对象
-    if (siteInfo.length === 0) {
-      siteInfo = new Site({
-        userInfo: {
-          userCount: 0,
-          visitCount: 0
-        },
-        cmsInfo: {
-          cpCount: 0,
-          picCount: 0,
-          videoCount: 0,
-          articleCount: 0
-        }
-      });
-      siteInfo.save();
-    } else {
-      //否则，注册用户数+1
-      siteInfo[0].userInfo.userCount += 1;
-      siteInfo[0].save();
-      newUser.accountInfo.uid = siteInfo[0].userInfo.userCount + 10000;
-      newUser.save();
-    }
-  });
-  newUser.save();
-  //redirect to index page
-  req.session.user = newUser;
-  res.redirect('/');
+  if (accountInfo.password1 === accountInfo.password2) {
+    query.exec(function(err, siteInfo) {
+      //如果没有全局信息，实例化新对象
+      if (siteInfo.length === 0) {
+        siteInfo = new Site({
+          userInfo: {
+            userCount: 0,
+            visitCount: 0
+          },
+          cmsInfo: {
+            cpCount: 0,
+            picCount: 0,
+            videoCount: 0,
+            articleCount: 0
+          }
+        });
+        siteInfo.save();
+      } else {
+        //否则，注册用户数+1
+        siteInfo[0].userInfo.userCount += 1;
+        siteInfo[0].save();
+        newUser.accountInfo.uid = siteInfo[0].userInfo.userCount + 10000;
+        newUser.save();
+      }
+    });
+    newUser.save();
+    //redirect to index page
+    req.session.user = newUser;
+    res.redirect('/');
+  } else {
+    res.send('密码不一致');
+  }
+
 });
 
 module.exports = router;

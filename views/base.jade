@@ -1,27 +1,34 @@
 include header
 body
-  nav.nav.nav-pills
-    ul.cp-tabs
-      li(role="presentation") 
-        a(href="/") Brand
-      li(role="presentation") 
-        a(href="/explore/") 发现
-      li(role="presentation") 
-        a(href="/square/") 广场
-    ul.cp-user(role="menu")
-      if user
-        li.user-action(role="presentation") 
-          if user.accountInfo.nickname
-            a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.nickname}
+  nav.navbar.navbar-default
+    div.container-fluid
+      div.navbar-header
+        button.navbar-toggle.collapsed(data-toggle="collapse",data-target="#index-navs",aria-expaned="false")
+          span.sr-only Toggle
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href="#") COOLCP
+      div.collapse.navbar-collapse#index-navs
+        ul.nav.navbar-nav
+          li(role="presentation")
+            a(href="/explore/") 发现
+          li(role="presentation") 
+            a(href="/square/") 广场
+        ul.nav.navbar-nav.navbar-right(role="menu")
+          if user
+            li.user-action(role="presentation") 
+              if user.accountInfo.nickname
+                a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.nickname}
+              else
+                a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.email}
+            li.user-action(role="presentation")
+              a(href="/accounts/logout/") 退出
           else
-            a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.email}
-        li.user-action(role="presentation")
-          a(href="/accounts/logout/") 退出
-      else
-        li.user-action(role="presentation") 
-          a(href="/accounts/login/") 登陆
-        li.user-action(role="presentation")
-          a(href="/accounts/register/") 注册
-  block content
+            li.user-action(role="presentation") 
+              a(href="/accounts/login/") 登陆
+            li.user-action(role="presentation")
+              a(href="/accounts/register/") 注册
+  div.container-fluid
+    block content
 
 include footer

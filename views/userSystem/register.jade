@@ -4,11 +4,11 @@ block link
   link(rel='stylesheet',href='/stylesheets/user-system.min.css')
     
 block content
-  //- .cp-dlg-cover
-  form.cp-dlg-box(action=".", method="post")
-    h3.cp-dlg-title Register
-    label.cp-dlg-label Email
-    input.cp-dlg-input(type="text", placeholder="username@example.com", name="email")
-    label.cp-dlg-label Password
-    input.cp-dlg-input(type="password", placeholder="password", name="password")
-    button.cp-dlg-sure-btn(type="submit") Sure
+  //- .cp-form-cover
+  form.col-md-offset-4.col-md-4.cp-form-box(action=".", method="post")
+    input.cp-form-input(type="text", placeholder="username@example.com", name="email")
+    input.cp-form-input(type="password", placeholder="password", name="password1")
+    input.cp-form-input(type="password", placeholder="repeat-password", name="password2")
+    button.cp-form-register-btn(type="submit") 立即注册
+    button.cp-form-login-btn(type="submit") 
+      a(href="/accounts/register/") 已有账号？马上登陆~
