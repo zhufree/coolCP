@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost/coolcp', function(error) {
 var routes = require('./routes/indexRoute');
 var users = require('./routes/userRoute');
 var admin = require('./routes/adminRoute');
+var works = require('./routes/workRoute');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/accounts', users);
 app.use('/admin', admin);
+app.use('/create', works);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

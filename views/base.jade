@@ -7,7 +7,7 @@ body
           span.sr-only Toggle
           span.icon-bar
           span.icon-bar
-        a.navbar-brand(href="#") COOLCP
+        a.navbar-brand(href="/") COOLCP
       div.collapse.navbar-collapse#index-navs
         ul.nav.navbar-nav
           li(role="presentation")
@@ -21,6 +21,8 @@ body
                 a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.nickname}
               else
                 a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.email}
+            li.user-action(role="presentation")
+              a(href="/create/cp/") 创建新CP
             li.user-action(role="presentation")
               a(href="/accounts/logout/") 退出
           else

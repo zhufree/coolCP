@@ -6,8 +6,7 @@ block link
   
 block content
   .list-group
-    a.list-item.active(href='#') 用户
-    a.list-item(href='#') A
+    each user in users
+      a.list-item.active(href='#') #{user.accountInfo.email}
+      //- a.list-item(href='#') A
   //- .list-group
-  
-    

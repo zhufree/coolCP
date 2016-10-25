@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require('../models/userModel');
 var Site = require('../models/siteModel');
 
-var userQuery = Site.find({});
+var userQuery = User.find({});
 /*
 admin后台管理
 增：添加新条目
@@ -27,6 +27,7 @@ work_article_detail
 // var query = Site.find({});
 /* GET home page. */
 router.all('*', function(req, res, next) {
+  console.log(req.session);
   if (!req.session.user) {
     console.log(req.session.user);
     res.redirect('../accounts/login/');
@@ -43,16 +44,16 @@ router.all('*', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
   //返回管理页面首页
+  var users;
   userQuery.exec(function(err, userResult) {
-    var users;
     if (err) {
       users = [];
       return ;
     }
     users = userResult;
+    console.log(users);
+    res.render('adminSystem/index', {title: 'Admin', user: curUser, users: users});
   });
-  console.log(users);
-  res.render('adminSystem/index', {title: 'Admin', user: curUser, users: users});
 });
 
 //用户管理

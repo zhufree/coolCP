@@ -21,7 +21,8 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "session-file-store": "^0.2.0",
-    "supervisor": "^0.10.0"
+    "supervisor": "^0.10.0",
+    "vue": "^2.0.3"
   },
   "devDependencies": {
     "jade": "^1.11.0",
