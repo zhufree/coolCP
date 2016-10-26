@@ -20,7 +20,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  console.log(req.session);
   res.render('userSystem/login', {title: 'Login'});
 });
 router.post('/login', function(req, res, next) {
@@ -33,7 +32,6 @@ router.post('/login', function(req, res, next) {
     } else {
       if (req.body.password == user.accountInfo.password) {
         req.session.user = user;
-        console.log(req.session);
         res.redirect('/');
       } else {
         res.send('wrong password');

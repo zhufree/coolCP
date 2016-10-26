@@ -27,9 +27,7 @@ work_article_detail
 // var query = Site.find({});
 /* GET home page. */
 router.all('*', function(req, res, next) {
-  console.log(req.session);
   if (!req.session.user) {
-    console.log(req.session.user);
     res.redirect('../accounts/login/');
   } else {
     if (req.session.user.accountInfo.uid === '10001') {
