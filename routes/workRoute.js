@@ -7,6 +7,13 @@ router.get('/', function(req, res, next) {
 });
 router.get('/cp/', function(req, res, next) {
   //jump to account/user_id/
-  res.render('workSystem/createCp');
+  var curUser;
+  if (req.session.user) {
+    curUser = req.session.user;
+  } else {
+    req.session.refer = '/create/cp/';
+    res.redirect('/accounts/login/');
+  }
+  res.render('workSystem/createCp', { title: '首页', user: curUser });
 });
 module.exports = router;

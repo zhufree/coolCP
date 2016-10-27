@@ -32,7 +32,11 @@ router.post('/login', function(req, res, next) {
     } else {
       if (req.body.password == user.accountInfo.password) {
         req.session.user = user;
-        res.redirect('/');
+        if (req.session.ref) {
+          res.redirect(req.session.refer);
+        } else {
+          res.redirect('/');
+        }
       } else {
         res.send('wrong password');
       }
