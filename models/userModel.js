@@ -6,7 +6,7 @@ var UserSchema = Schema({
     nickname: String,
     email: String,
     password: String,
-    register_date : {
+    registerDate : {
       type: Date,
       default: Date.now
     }
