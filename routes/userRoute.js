@@ -55,15 +55,13 @@ router.get('/register', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
   //get data in req
-
-  var newUser = new User({
-    accountInfo: {
-      email: req.body.email,
-      password1: req.body.password1,
-      password2: req.body.password2
-    }
-  });
-  if (accountInfo.password1 === accountInfo.password2) {
+  if (req.body.password1 === req.body.password2) {
+    var newUser = new User({
+      accountInfo: {
+        email: req.body.email,
+        password: req.body.password1,
+      }
+    });
     query.exec(function(err, siteInfo) {
       //如果没有全局信息，实例化新对象
       if (siteInfo.length === 0) {

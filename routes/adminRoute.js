@@ -2,6 +2,12 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/userModel');
 var Site = require('../models/siteModel');
+var Couple = require('../models/coupleModel');
+var Tag = require('../models/tagModel');
+var Article = require('../models/articleModel');
+var Video = require('../models/videoModel');
+var Picture = require('../models/pictureModel');
+var Comment = require('../models/commentModel');
 
 var userQuery = User.find({});
 /*
@@ -73,11 +79,11 @@ router.post('/accounts/:userId', function(req, res, next) {
 
 
 //cp管理
-router.get('/couples/', function(req, res, next) {
+router.get('/couple/', function(req, res, next) {
   //返回所有cp列表
   res.render('adminSystem/cp_index');
 });
-router.post('/couples/delete/', function(req, res, next) {
+router.post('/couple/delete/', function(req, res, next) {
   //删除一个/多个cp
   res.render('adminSystem/cp_detail');
 });
