@@ -15,7 +15,7 @@ var TagSchema = Schema({
 TagSchema.statics.getOrCreate = function(name, category) {
   var Tag = this;
   var result;
-  this.find({'basicInfo.name': name}, function(err, tag) {
+  return this.find({'basicInfo.name': name}, function(err, tag) {
     if (err) {
       console.log(err);
     }
@@ -30,16 +30,17 @@ TagSchema.statics.getOrCreate = function(name, category) {
           coupleCount: 1,
         }
       });
-      // console.log(newTag);
       newTag.save();
       result = newTag;
     } else {
-      tag.workCount += 1;
-      tag.coupleCount += 1;
+      tag.countInfo.workCount += 1;
+      tag.countInfo.coupleCount += 1;
       result = tag;
     }
+  }).then(function() {
+    console.log(result);
+    return result;
   });
-  return result;
 };
 //将Schema发布为Model
 module.exports = mongoose.model("Tag", TagSchema);

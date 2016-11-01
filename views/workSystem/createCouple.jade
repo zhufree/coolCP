@@ -12,6 +12,7 @@ block content
         div.input-group.input-group-lg
           span.input-group-addon cp名称
           input.form-control(name="name")
+        p.text-danger 该项不能为空
       div.desc-input.form-group
         label(for='desc-input') 描述
         textarea#desc-input.form-control(row='5')
@@ -21,6 +22,7 @@ block content
           div.input-group.input-group-lg
             span.input-group-addon 名字
             input.form-control(type='text', name='role_1_name', placeholder='角色一')
+          p.text-danger 该项不能为空
         div.from.col-md-8.form-group
           div.input-group.input-group-lg
             div.input-group-btn
@@ -36,11 +38,13 @@ block content
                 li 
                   a 其它
             input.form-control(type='text', name='role_1_from')
+          p.text-danger 该项不能为空
       div.role-2
       div.name.col-md-4.form-group
         div.input-group.input-group-lg
           span.input-group-addon 名字
           input.form-control(type='text', name='role_2_name', placeholder='角色二')
+        p.text-danger 该项不能为空
       div.from.col-md-8.form-group
         div.input-group.input-group-lg
           div.input-group-btn
@@ -56,6 +60,7 @@ block content
               li 
                 a 其它
           input.form-control(type='text', name='role_2_from')
-    button#btn.btn.btn-primary.btn-lg.col-md-4.col-md-offset-4(type='submit') 提交
+        p.text-danger 该项不能为空
+    button#btn.btn.btn-primary.btn-lg.col-md-4.col-md-offset-4(type='button') 提交
 block javascript
   script(src="/javascripts/createCouple.min.js")

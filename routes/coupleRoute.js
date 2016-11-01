@@ -32,24 +32,13 @@ router.post('/create/', function(req, res, next) {
   if (!req.session.user) {
     res.redirect('/accounts/login/');
   }
-  // 根据标签创建或查询role和from
-  role1 = Tag.getOrCreate(req.body.role_1_name, '角色');
-  role2 = Tag.getOrCreate(req.body.role_2_name, '角色');
-  // Tag.getOrCreate(req.body.role_1_from, '出自作品');
-  // Tag.getOrCreate(req.body.role_2_from, '出自作品');
 
   var newCouple = new Couple({
     basicInfo: {
       name: req.body.name,
       // coverImage: req.body.coverImageUrl,
-      roles: [{
-        name: req.body.role_1_name,
-        from: role1 //以后修改为from
-      },{
-        name: req.body.role_2_name,
-        from: role2
-      }],
-      from: role1
+      roles: [],
+      froms: [],
     },
     workInfo: {
       pictures: [],
@@ -63,6 +52,22 @@ router.post('/create/', function(req, res, next) {
     }
   });
   newCouple.save();
+
+  // 根据标签创建或查询role和from
+  Origin.getOrCreate(req.body.role_1_from, '电视剧', function(origin) {
+    newCouple.basicInfo.froms.push(origin);
+    Role.getOrCreate(req.body.role_1_name, origin, function(role) {
+      newCouple.basicInfo.roles.push(role);
+      Origin.getOrCreate(req.body.role_2_from, '电视剧', function(origin) {
+        newCouple.basicInfo.from.push(origin);
+        Role.getOrCreate(req.body.role_2_name, origin, function(role) {
+          newCouple.basicInfo.roles.push(role);
+          newCouple.save();
+        });
+      });
+    });
+  });
+
   res.redirect('.');
 });
 module.exports = router;

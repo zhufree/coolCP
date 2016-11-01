@@ -4,10 +4,16 @@
   }
 }
 #desc-input {
-  height: 100px;
+  height: 80px;
 }
 .role-input {
   float: left;
   margin: 40px 0;
-
+}
+.text-danger {
+  margin-left: 10px;
+  &:before {
+    content: "!"
+  }
+  display: none;
 }

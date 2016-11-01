@@ -44,7 +44,7 @@ gulp.task('server', ['styles', 'scripts'], function() {
   gulp.watch('views/**/*.jade', express.notify);
   gulp.watch('public/**/*.css', express.notify);
   gulp.watch('public/**/*.js', express.notify);
-  gulp.watch(['app.js', 'routes/**/*.js'], express.run);
+  gulp.watch(['app.js', 'routes/**/*.js', 'models/**/*.js'], express.run);
 });
 
 gulp.task('default', ['server']);
