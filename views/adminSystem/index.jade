@@ -5,8 +5,43 @@ block link
   link(rel='stylesheet',href='/stylesheets/libs/bootstrap.min.css')
   
 block content
-  .list-group
-    each user in users
-      a.list-item.active(href='#') #{user.accountInfo.email}
-      //- a.list-item(href='#') A
-  //- .list-group
+  ul.nav.nav-tabs(role='tablist')
+    li(role='presentation')
+      a(href='#users',role='tab',data-toggle='tab') 用户
+    li(role='presentation')
+      a(href='#couples',role='tab',data-toggle='tab') Couples
+    li(role='presentation')
+      a(href='#articles',role='tab',data-toggle='tab') Articles
+    li(role='presentation')
+      a(href='#videos',role='tab',data-toggle='tab') Videos
+    li(role='presentation')
+      a(href='#pictures',role='tab',data-toggle='tab') Pictures
+    li(role='presentation')
+      a(href='#tags',role='tab',data-toggle='tab') Tags
+  div.tab-content
+    div#users.tab-pane.active
+      .list-group
+        each user in users
+          a.list-group-item(href='#') #{user.accountInfo.email}
+    div#couples.tab-pane
+      .list-group
+        each couple in couples
+          a.list-group-item(href='#') #{couple.basicInfo.name}
+    div#articles.tab-pane
+      .list-group
+        each article in articles
+          a.list-group-item(href='#') #{article.basicInfo.title}
+    div#videos.tab-pane
+      .list-group
+        each video in videos
+          a.list-group-item(href='#') #{video.basicInfo.name}
+    div#pictures.tab-pane
+      .list-group
+        each picture in pictures
+          a.list-group-item(href='#') #{picture.basicInfo.name}
+    div#tags.tab-pane
+      .list-group
+        each tag in tags
+          a.list-group-item(href='#') #{tag.basicInfo.name}
+    
+    //- .list-group

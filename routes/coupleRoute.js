@@ -33,41 +33,35 @@ router.post('/create/', function(req, res, next) {
     res.redirect('/accounts/login/');
   }
 
-  var newCouple = new Couple({
-    basicInfo: {
-      name: req.body.name,
-      // coverImage: req.body.coverImageUrl,
-      roles: [],
-      froms: [],
-    },
-    workInfo: {
-      pictures: [],
-      videos: [],
-      articles: []
-    },
-    otherInfo: {
-      tags: [],
-      visitCount: 0,
-      likeCount: 0
-    }
-  });
-  newCouple.save();
-
   // 根据标签创建或查询role和from
-  Origin.getOrCreate(req.body.role_1_from, '电视剧', function(origin) {
-    newCouple.basicInfo.froms.push(origin);
-    Role.getOrCreate(req.body.role_1_name, origin, function(role) {
-      newCouple.basicInfo.roles.push(role);
-      Origin.getOrCreate(req.body.role_2_from, '电视剧', function(origin) {
-        newCouple.basicInfo.from.push(origin);
-        Role.getOrCreate(req.body.role_2_name, origin, function(role) {
-          newCouple.basicInfo.roles.push(role);
+  Origin.getOrCreate(req.body.role_1_from, '网站', function(origin1) {
+    Role.getOrCreate(req.body.role_1_name, origin1, function(role1) {
+      Origin.getOrCreate(req.body.role_2_from, '网站', function(origin2) {
+        Role.getOrCreate(req.body.role_2_name, origin2, function(role2) {
+          var newCouple = new Couple({
+            basicInfo: {
+              name: req.body.name,
+              // coverImage: req.body.coverImageUrl,
+              roles: [role1, role2],
+              froms: [origin1, origin2],
+            },
+            workInfo: {
+              pictures: [],
+              videos: [],
+              articles: []
+            },
+            otherInfo: {
+              tags: [],
+              visitCount: 0,
+              likeCount: 0
+            }
+          });
           newCouple.save();
+          res.redirect('.');
         });
       });
     });
   });
 
-  res.redirect('.');
 });
 module.exports = router;

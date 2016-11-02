@@ -15,7 +15,7 @@ var RoleSchema = Schema({
 RoleSchema.statics.getOrCreate = function(name, fromOrigin, callback) {
   var Role = this;
   var result;
-  this.find({'basicInfo.name': name}, function(err, role, callback) {
+  this.find({'basicInfo.name': name}, function(err, role) {
     if (err) {
       console.log(err);
     }
@@ -38,7 +38,6 @@ RoleSchema.statics.getOrCreate = function(name, fromOrigin, callback) {
       role[0].countInfo.coupleCount += 1;
       result = role[0];
     }
-  }).then(function() {
     callback(result);
   });
 };

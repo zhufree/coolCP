@@ -11,7 +11,7 @@ var OriginSchema = Schema({
     coupleCount: Number
   }
 });
-OriginSchema.statics.getOrCreate = function(name, category) {
+OriginSchema.statics.getOrCreate = function(name, category, callback) {
   var Origin = this;
   var result;
   this.find({'basicInfo.name': name}, function(err, origin) {
@@ -36,7 +36,6 @@ OriginSchema.statics.getOrCreate = function(name, category) {
       origin[0].countInfo.coupleCount += 1;
       result = origin[0];
     }
-  }).then(function() {
     callback(result);
   });
 };

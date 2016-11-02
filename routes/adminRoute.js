@@ -34,9 +34,10 @@ work_article_detail
 /* GET home page. */
 router.all('*', function(req, res, next) {
   if (!req.session.user) {
+    req.session.refer = '/admin/';
     res.redirect('../accounts/login/');
   } else {
-    if (req.session.user.accountInfo.uid === '10001') {
+    if (req.session.user.accountInfo.uid === '10003') {
       var curUser = req.session.user;
       next();
     } else {
@@ -49,14 +50,45 @@ router.all('*', function(req, res, next) {
 router.get('/', function(req, res, next) {
   //返回管理页面首页
   var users;
-  userQuery.exec(function(err, userResult) {
+  User.find({}, function(err, users) {
     if (err) {
       users = [];
-      return ;
     }
-    users = userResult;
-    console.log(users);
-    res.render('adminSystem/index', {title: 'Admin', user: curUser, users: users});
+    Couple.find({}, function(err, couples) {
+      if (err) {
+        couples = [];
+      }
+      Article.find({}, function(err, articles) {
+        if (err) {
+          articles = [];
+        }
+        Video.find({}, function(err, videos) {
+          if (err) {
+            videos = [];
+          }
+          Picture.find({}, function(err, pictures) {
+            if (err) {
+              pictures = [];
+            }
+            Tag.find({}, function(err, tags) {
+              if (err) {
+                tags = [];
+              }
+              res.render('adminSystem/index', {
+                title: 'Admin',
+                user: curUser,
+                users: users,
+                couples: couples,
+                articles: articles,
+                videos: videos,
+                pictures: pictures,
+                tags: tags
+              });
+            });
+          });
+        });
+      });
+    });
   });
 });
 
