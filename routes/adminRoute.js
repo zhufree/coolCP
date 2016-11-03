@@ -35,7 +35,7 @@ work_article_detail
 router.all('*', function(req, res, next) {
   if (!req.session.user) {
     req.session.refer = '/admin/';
-    res.redirect('../accounts/login/');
+    res.redirect('/accounts/login/');
   } else {
     if (req.session.user.accountInfo.uid === '10003') {
       var curUser = req.session.user;
@@ -93,27 +93,28 @@ router.get('/', function(req, res, next) {
 });
 
 //用户管理
-router.get('/accounts/', function(req, res, next) {
-  //返回所有用户列表
-  res.render('adminSystem/user_index');
-});
-router.post('/accounts/delete/', function(req, res, next) {
+router.post('/users/delete/', function(req, res, next) {
   //删除一个/多个用户
 });
-router.get('/accounts/:userId', function(req, res, next) {
+router.get('/users/:uid', function(req, res, next) {
   //根据id展示用户详细信息
-  res.render('adminSystem/user_detail');
+  User.findOne({'accountInfo.uid': req.params.uid}, function(err, result) {
+    res.render('adminSystem/user_detail', {title: '用户详情', user: result});
+  });
 });
-router.post('/accounts/:userId', function(req, res, next) {
+router.post('/users/:userId', function(req, res, next) {
   //根据id选定用户并修改详细信息
-  res.redirect('/accounts/:userId');
+  res.redirect('/users/:userId');
 });
 
 
 //cp管理
-router.get('/couple/', function(req, res, next) {
-  //返回所有cp列表
-  res.render('adminSystem/cp_index');
+router.get('/couples/:_id', function(req, res, next) {
+  //根据id展示用户详细信息
+  Couple.findOne({_id: req.params._id}, function(err, result) {
+    console.log(result);
+    res.render('adminSystem/couple_detail', {title: 'couple详情', couple: result});
+  });
 });
 router.post('/couple/delete/', function(req, res, next) {
   //删除一个/多个cp
@@ -122,13 +123,29 @@ router.post('/couple/delete/', function(req, res, next) {
 
 
 //作品管理
-router.get('/works/', function(req, res, next) {
-  //返回作品列表
-  res.render('adminSystem/work_index');
+router.get('/works/picture/:_id', function(req, res, next) {
+  //根据id展示用户详细信息
+  Picture.findOne({_id: req.params._id}, function(err, result) {
+    console.log(result);
+    res.render('adminSystem/work_detail', {title: '作品详情', picture: result});
+  });
+});
+router.get('/works/video/:_id', function(req, res, next) {
+  //根据id展示用户详细信息
+  Video.findOne({_id: req.params._id}, function(err, result) {
+    console.log(result);
+    res.render('adminSystem/work_detail', {title: '作品详情', video: result});
+  });
+});
+router.get('/works/article/:_id', function(req, res, next) {
+  //根据id展示用户详细信息
+  Article.findOne({_id: req.params._id}, function(err, result) {
+    console.log(result);
+    res.render('adminSystem/work_detail', {title: '作品详情', article: result});
+  });
 });
 router.post('/works/delete/', function(req, res, next) {
-  //删除一个/多个作品
-  res.render('adminSystem/work_pic_detail');
+  res.render('adminSystem/work_detail');
 });
 
 module.exports = router;

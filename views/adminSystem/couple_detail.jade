@@ -1,0 +1,21 @@
+extends ../base.jade
+
+block link
+  link(rel='stylesheet',href='/stylesheets/admin-system.min.css')
+  link(rel='stylesheet',href='/stylesheets/libs/bootstrap.min.css')
+  
+block content
+  h1 基本信息
+  h2 名称：#{couple.basicInfo.name}
+  h2 封面图链接：#{couple.basicInfo.coverImage}
+  h2 角色：#{couple.basicInfo.roles}
+  h3 来源作品：#{couple.basicInfo.from}
+  h1 作品信息
+  h2 图片：#{couple.workInfo.pictures}
+  h2 视频：#{couple.workInfo.videos}
+  h2 音频：#{couple.workInfo.articles}
+  h1 其他信息
+  h2 标签 #{couple.otherInfo.tags}
+  h2 浏览数 #{couple.otherInfo.visitCount}
+  h2 点赞数 #{couple.otherInfo.likeCount}
+  
