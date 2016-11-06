@@ -4,6 +4,7 @@ var OriginSchema = Schema({
   basicInfo: {
     name: String,
     category: String, // 哪种作品
+    coverImage: String,
     relatedCouples: [{type:Schema.Types.ObjectId,ref:'Couple'}]
   },
   countInfo: {

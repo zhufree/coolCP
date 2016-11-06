@@ -1,6 +1,19 @@
 #cover-img {
+  border: dashed 5px grey;
+  text-align: center;
+  padding: 0;
+  // position: absolute;
   img {
+    width: 40%;
+    margin: 35px auto;
+  }
+  input {
     width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    float: left;
+    cursor: pointer;
   }
 }
 #desc-input {

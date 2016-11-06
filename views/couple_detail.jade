@@ -1,0 +1,16 @@
+extends ./base.jade
+
+block link
+  link(rel='stylesheet', href='/stylesheets/cpdetail.min.css')
+  
+block content
+  div.couple-box
+    img#couple-cover(src='/images/default_cover.jpg')
+    h1 #{couple.basicInfo.name}
+    p #{couple.basicInfo.description}
+    h2 角色：#{couple.basicInfo.roles}
+    h3 来源作品：#{couple.basicInfo.from}
+    h1 作品信息
+    h2 图片：#{couple.workInfo.pictures}
+    h2 视频：#{couple.workInfo.videos}
+    h2 音频：#{couple.workInfo.articles}

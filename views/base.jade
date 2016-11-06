@@ -18,11 +18,11 @@ body
           if user
             li.user-action(role="presentation") 
               if user.accountInfo.nickname
-                a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.nickname}
+                a(href="#") #{user.accountInfo.nickname}
               else
-                a(href="/accounts/#{user.accountInfo.uid}/") #{user.accountInfo.email}
+                a(href="#") #{user.accountInfo.email}
             li.user-action(role="presentation")
-              a(href="/couple/create/") 创建新CP
+              a(href="/create/couple/") 创建新CP
             li.user-action(role="presentation")
               a(href="/admin/") admin
             li.user-action(role="presentation")
@@ -32,7 +32,7 @@ body
               a(href="/accounts/login/") 登陆
             li.user-action(role="presentation")
               a(href="/accounts/register/") 注册
-  div.container-fluid
+  div.container-fluid.col-md-10.col-md-offset-1
     block content
 
 include footer

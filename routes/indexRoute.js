@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Site = require('../models/siteModel');
-
+var Couple = require('../models/coupleModel');
 var query = Site.find({});
 /*
 一级路由导航
@@ -37,5 +37,31 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: '首页'});
   }
 });
+router.get('/explore/', function(req, res, next) {
+  Couple.find({}, function(err, couples) {
+    if (req.session.user) {
+      curUser = req.session.user;
+      res.render('explore', { title: '探索', couples: couples, user: curUser });
+    } else {
+      res.render('explore', { title: '探索', couples: couples});
+    }
+  });
+});
 
+// 浏览作品（全部及按id单个）
+router.get('/couple/:coupleId/', function(req, res, next) {
+  Couple.findOne({_id: req.params.coupleId}, function(err, couple) {
+    if (req.session.user) {
+      curUser = req.session.user;
+      res.render('couple_detail', { title: couple.basicInfo.name, couple: couple, user: curUser });
+    } else {
+      res.render('couple_detail', { title: couple.basicInfo.name, couple: couple});
+    }
+  });
+});
+
+// 删除
+router.get('/delete/:type/:id', function(req, res, next) {
+  
+});
 module.exports = router;

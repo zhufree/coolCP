@@ -4,9 +4,10 @@ block link
   link(rel='stylesheet',href='/stylesheets/createcp.min.css')
   
 block content
-  form#couple-form.shell.col-md-8.col-md-offset-2(role='form', action='.', method='POST')
+  form#couple-form.shell.col-md-10.col-md-offset-1(role='form', action='.', method='POST')
     div#cover-img.col-md-3
-      img(src='/images/default_cover.jpg')
+      input#image-input(type='file')
+      img(src='/images/publish_add.png')
     div.info-input.col-md-9
       div.title-input.form-group
         div.input-group.input-group-lg
@@ -15,7 +16,7 @@ block content
         p.text-danger 该项不能为空
       div.desc-input.form-group
         label(for='desc-input') 描述
-        textarea#desc-input.form-control(row='5')
+        textarea#desc-input.form-control(row='5', name='desc')
     div.role-input
       div.role-1
         div.name.col-md-4.form-group

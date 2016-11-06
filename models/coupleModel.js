@@ -4,6 +4,7 @@ var CoupleSchema = Schema({
   basicInfo: {
     name: String,
     coverImage: String,
+    description: String,
     roles: [{type:Schema.Types.ObjectId,ref:'Role'}],
     from: [{type:Schema.Types.ObjectId,ref:'Origin'}]
   },

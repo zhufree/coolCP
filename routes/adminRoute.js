@@ -1,3 +1,4 @@
+var parallel = require('async/parallel');
 var express = require('express');
 var router = express.Router();
 var User = require('../models/userModel');
@@ -49,46 +50,37 @@ router.all('*', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
   //返回管理页面首页
-  var users;
-  User.find({}, function(err, users) {
-    if (err) {
-      users = [];
-    }
-    Couple.find({}, function(err, couples) {
-      if (err) {
-        couples = [];
-      }
-      Article.find({}, function(err, articles) {
-        if (err) {
-          articles = [];
-        }
-        Video.find({}, function(err, videos) {
-          if (err) {
-            videos = [];
-          }
-          Picture.find({}, function(err, pictures) {
-            if (err) {
-              pictures = [];
-            }
-            Tag.find({}, function(err, tags) {
-              if (err) {
-                tags = [];
-              }
-              res.render('adminSystem/index', {
-                title: 'Admin',
-                user: curUser,
-                users: users,
-                couples: couples,
-                articles: articles,
-                videos: videos,
-                pictures: pictures,
-                tags: tags
-              });
-            });
-          });
-        });
-      });
-    });
+  parallel([
+    function(cb){
+      User.find({}, cb);
+    },
+    function(cb){
+      Couple.find({}, cb);
+    },
+    function(cb){
+      Article.find({}, cb);
+    },
+    function(cb){
+      Video.find({}, cb);
+    },
+    function(cb){
+      Picture.find({}, cb);
+    },
+    function(cb){
+      Tag.find({}, cb);
+    },
+  ], function(err, results){
+     // results contains both users and articles
+     res.render('adminSystem/index', {
+       title: 'Admin',
+       user: curUser,
+       users: results[0],
+       couples: results[1],
+       articles: results[2],
+       videos: results[3],
+       pictures: results[4],
+       tags: results[5]
+     });
   });
 });
 
@@ -112,7 +104,6 @@ router.post('/users/:userId', function(req, res, next) {
 router.get('/couples/:_id', function(req, res, next) {
   //根据id展示用户详细信息
   Couple.findOne({_id: req.params._id}, function(err, result) {
-    console.log(result);
     res.render('adminSystem/couple_detail', {title: 'couple详情', couple: result});
   });
 });
@@ -126,21 +117,18 @@ router.post('/couple/delete/', function(req, res, next) {
 router.get('/works/picture/:_id', function(req, res, next) {
   //根据id展示用户详细信息
   Picture.findOne({_id: req.params._id}, function(err, result) {
-    console.log(result);
     res.render('adminSystem/work_detail', {title: '作品详情', picture: result});
   });
 });
 router.get('/works/video/:_id', function(req, res, next) {
   //根据id展示用户详细信息
   Video.findOne({_id: req.params._id}, function(err, result) {
-    console.log(result);
     res.render('adminSystem/work_detail', {title: '作品详情', video: result});
   });
 });
 router.get('/works/article/:_id', function(req, res, next) {
   //根据id展示用户详细信息
   Article.findOne({_id: req.params._id}, function(err, result) {
-    console.log(result);
     res.render('adminSystem/work_detail', {title: '作品详情', article: result});
   });
 });

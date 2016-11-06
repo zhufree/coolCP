@@ -8,7 +8,8 @@ var gulp = require('gulp'),
   del = require('del'),
   jade = require('gulp-jade'),
   connect = require('gulp-connect'),
-  express = require('gulp-express');
+  express = require('gulp-express'),
+  babel = require('gulp-babel');
 
 gulp.task('styles', function(){
   // del(['dist/css']);
@@ -35,6 +36,12 @@ gulp.task('scripts', function () {
 gulp.task('clean', function(cb) {
   del(['dist/css', 'dist/js'], cb);
 });
+
+// gulp.task('babel', function() {
+//   gulp.src('app.js')
+//     .pipe(babel())
+//     .pipe(gulp.dest('.'));
+// });
 
 gulp.task('server', ['styles', 'scripts'], function() {
   express.run(['./bin/www']);

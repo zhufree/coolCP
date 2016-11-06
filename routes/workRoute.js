@@ -15,19 +15,20 @@ router.get('/', function(req, res, next) {
   //jump to account/user_id/
   res.send('respond with a resource');
 });
-router.get('/create/', function(req, res, next) {
+
+router.get('/couple/', function(req, res, next) {
   //jump to account/user_id/
   var curUser;
   if (req.session.user) {
     curUser = req.session.user;
   } else {
-    req.session.refer = '/couple/create';
+    req.session.refer = '/couple/create/';
     res.redirect('/accounts/login/');
   }
-  res.render('workSystem/createCouple', { title: '首页', user: curUser });
+  res.render('workSystem/create_couple', { title: '首页', user: curUser });
 });
 
-router.post('/create/', function(req, res, next) {
+router.post('/couple/', function(req, res, next) {
   // 验证是否登陆
   if (!req.session.user) {
     res.redirect('/accounts/login/');
@@ -42,6 +43,7 @@ router.post('/create/', function(req, res, next) {
             basicInfo: {
               name: req.body.name,
               // coverImage: req.body.coverImageUrl,
+              description: req.body.desc,
               roles: [role1, role2],
               froms: [origin1, origin2],
             },

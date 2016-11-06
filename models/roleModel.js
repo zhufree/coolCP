@@ -4,6 +4,7 @@ var RoleSchema = Schema({
   basicInfo: {
     name: String,
     nicknames: [String],
+    coverImage: String,
     relatedCouples: [{type:Schema.Types.ObjectId,ref:'Couple'}],
     from: {type:Schema.Types.ObjectId,ref:'Origin'}
   },

@@ -1,0 +1,15 @@
+extends ./base.jade
+
+block link
+  
+block content
+  each couple in couples
+    div.couple-div.col-md-4
+      div.thumbnail
+        a(href='/couple/#{couple._id}')
+          img(src='/images/default_cover.jpg')
+          div.caption
+            h3 #{couple.basicInfo.name}
+            p
+              a(role='button',href="#",class="btn btn-primary") 喜欢
+              a(role='button',href="#",class="btn btn-default") 关注

@@ -2,7 +2,6 @@ extends ../base.jade
 
 block link
   link(rel='stylesheet',href='/stylesheets/admin-system.min.css')
-  link(rel='stylesheet',href='/stylesheets/libs/bootstrap.min.css')
   
 block content
   h1 基本信息
@@ -14,4 +13,5 @@ block content
   h2 出生日期：#{user.personInfo.bornDate}
   h2 年龄：#{user.personInfo.age}
   h2 性别：#{user.personInfo.sexual}
+  button#del-btn.btn.btn-danger 删除用户
   
